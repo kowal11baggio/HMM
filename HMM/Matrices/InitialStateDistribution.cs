@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HMM
+namespace HMM.Matrices
 {
-    class ProgramRunClass
+    class InitialStateDistribution
     {
-        static void Main(string[] args)
-        {
-            ; // first commit
-        }
     }
 }

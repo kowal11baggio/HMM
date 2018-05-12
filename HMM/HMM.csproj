@@ -42,11 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Foundations\Observations.cs" />
+    <Compile Include="Foundations\States.cs" />
+    <Compile Include="Matrices\InitialStateDistribution.cs" />
+    <Compile Include="Matrices\ObservationProbabilityMatrix.cs" />
+    <Compile Include="Matrices\StateTransitionProbabilityMatrix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sequence\ObservationSequence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
