@@ -11,7 +11,7 @@ namespace HMM.Foundations
         private static readonly Observations instance = new Observations();
 
         private int _numberOfObservations;
-        private enum Observation { Large, Medium, Small };
+        public enum Observation { Large, Medium, Small };
 
         private Observations()
         {

@@ -16,6 +16,17 @@ namespace HMM.Matrices
             _initailMatrix = new double[States.Instance.getNumberOfStates()];
         }
 
+        public bool setInitailMatrix()
+        {
+            // something here
+            return stochasticMatrix();
+        }
+
+        public double[] getInitailMatrix()
+        {
+            return _initailMatrix;
+        }
+
         private bool stochasticMatrix()
         {
             double _sum = 0;
