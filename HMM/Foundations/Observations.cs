@@ -11,12 +11,12 @@ namespace HMM.Foundations
         private int _numberOfStates;
         private enum Observation { Large, Medium, Small };
 
-        public void setNumberOfStates(int numberOfStates)
+        public void setNumberOfStates()
         {
-            _numberOfStates = numberOfStates;
+            _numberOfStates = Enum.GetNames(typeof(Observation)).Length;
         }
 
-        public int setNumberOfStates()
+        public int getNumberOfStates()
         {
             return _numberOfStates;
         }
