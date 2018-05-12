@@ -10,7 +10,7 @@ namespace HMM
     {
         static void Main(string[] args)
         {
-            ; // first commits
+            ; /// first commits
         }
     }
 }
