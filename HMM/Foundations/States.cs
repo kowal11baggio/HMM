@@ -11,7 +11,12 @@ namespace HMM.Foundations
         private int _numberOfStates;
         private enum State { Hot, Cold };
 
-        public void setNumberOfStates()
+        public States()
+        {
+            setNumberOfStates();
+        }
+
+        private void setNumberOfStates()
         {
             _numberOfStates = Enum.GetNames(typeof(State)).Length;
         }
