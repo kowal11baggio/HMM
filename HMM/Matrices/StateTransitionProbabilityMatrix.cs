@@ -9,13 +9,11 @@ namespace HMM.Matrices
 {
     class StateTransitionProbabilityMatrix
     {
-        private States _states;
         private double[,] _matrixA;
 
         public StateTransitionProbabilityMatrix()
         {
-            _states = new States();
-            _matrixA = new double[_states.getNumberOfStates(), _states.getNumberOfStates()];
+            _matrixA = new double[States.Instance.getNumberOfStates(), States.Instance.getNumberOfStates()];
         }
     }
 }

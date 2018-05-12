@@ -8,12 +8,22 @@ namespace HMM.Foundations
 {
     public class States
     {
+        private static readonly States instance = new States();
+
         private int _numberOfStates;
         private enum State { Hot, Cold };
 
-        public States()
+        private States()
         {
             setNumberOfStates();
+        }
+
+        public static States Instance
+        {
+            get
+            {
+                return instance;
+            }   
         }
 
         private void setNumberOfStates()
