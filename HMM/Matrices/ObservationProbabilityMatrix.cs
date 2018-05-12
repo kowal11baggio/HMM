@@ -13,7 +13,21 @@ namespace HMM.Matrices
 
         public ObservationProbabilityMatrix()
         {
-            _matrixB = new double[Observations.Instance.getNumberOfObservations(), States.Instance.getNumberOfStates()];
+            _matrixB = new double[States.Instance.getNumberOfStates(), Observations.Instance.getNumberOfObservations()];
+        }
+
+        private bool stochasticMatrix()
+        {
+            double _sum = 0;
+            for (int _i = 0; _i < States.Instance.getNumberOfStates(); _i++)
+            {
+                for (int _j = 0; _j < Observations.Instance.getNumberOfObservations(); _j++)
+                    _sum += _matrixB[_i, _j];
+                if (_sum != 1.0)
+                    return false;
+                _sum = 0;
+            }
+            return true;
         }
     }
 }
