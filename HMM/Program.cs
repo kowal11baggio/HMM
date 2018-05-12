@@ -10,6 +10,7 @@ namespace HMM
     {
         static void Main(string[] args)
         {
+            //nothing
         }
     }
 }
