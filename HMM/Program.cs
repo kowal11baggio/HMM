@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HMM.Algorithm;
 
 namespace HMM
 {
@@ -10,7 +11,7 @@ namespace HMM
     {
         static void Main(string[] args)
         {
-            ; // first commits
+            var kernel = new Kernel();
         }
     }
 }

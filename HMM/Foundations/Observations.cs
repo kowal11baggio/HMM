@@ -8,17 +8,33 @@ namespace HMM.Foundations
 {
     public class Observations
     {
-        private int _numberOfStates;
-        private enum Observation { Large, Medium, Small };
+        private static readonly Observations instance = new Observations();
 
-        public void setNumberOfStates(int numberOfStates)
+        private int _numberOfObservations;
+        public enum Observation { Large, Medium, Small };
+
+        private Observations()
         {
-            _numberOfStates = numberOfStates;
+            setNumberOfObservations();
         }
 
-        public int setNumberOfStates()
+        public static Observations Instance
         {
-            return _numberOfStates;
+            get
+            {
+                return instance;
+            }
         }
+
+        private void setNumberOfObservations()
+        {
+            _numberOfObservations = Enum.GetNames(typeof(Observation)).Length;
+        }
+
+        public int getNumberOfObservations()
+        {
+            return _numberOfObservations;
+        }
+    
     }
 }
