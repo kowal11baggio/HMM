@@ -9,7 +9,7 @@ using System.Globalization;
 
 namespace HMM.Matrices
 {
-    class ObservationProbabilityMatrix
+    class ObservationProbabilityMatrix : IMatrixOperations
     {
         private static readonly ObservationProbabilityMatrix instance = new ObservationProbabilityMatrix();
         private double[,] _matrixB;
@@ -31,6 +31,18 @@ namespace HMM.Matrices
         private void setMatrixB()
         {
             var fileName = @"A:/REPOS/HMM/HMM/DataFiles/ObservationProbabilityData.txt";
+            setDataToMatrix(fileName);
+            if (!stochasticMatrix())
+                throw new System.Exception("Matrix is not stochastic.");
+        }
+
+        public double[,] getMatrixB()
+        {
+            return _matrixB;
+        }
+
+        public void setDataToMatrix(string fileName)
+        {
             int _i = 0, _j = 0;
             string[] lines = System.IO.File.ReadAllLines(fileName);
             foreach (var line in lines)
@@ -45,28 +57,19 @@ namespace HMM.Matrices
                 _j = 0;
                 _i++;
             }
-
-            if (!stochasticMatrix())
-                throw new System.Exception("Matrix is not stochastic.");
         }
 
-        public double[,] getMatrixB()
-        {
-            return _matrixB;
-        }
-
-        private bool stochasticMatrix()
+        public bool stochasticMatrix()
         {
             double _sum = 0;
             for (int _i = 0; _i < States.Instance.getNumberOfStates(); _i++)
             {
                 for (int _j = 0; _j < Observations.Instance.getNumberOfObservations(); _j++)
-                        _sum += _matrixB[_i, _j]*1000;
-                if (_sum/1000 != 1.0)
+                    _sum += _matrixB[_i, _j] * 1000;
+                if (_sum / 1000 != 1.0)
                     return false;
                 _sum = 0;
             }
-            
             return true;
         }
     }

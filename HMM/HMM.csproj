@@ -45,6 +45,7 @@
     <Compile Include="Foundations\Observations.cs" />
     <Compile Include="Foundations\States.cs" />
     <Compile Include="Matrices\InitialStateDistribution.cs" />
+    <Compile Include="Matrices\IMatrixOperations.cs" />
     <Compile Include="Matrices\ObservationProbabilityMatrix.cs" />
     <Compile Include="Matrices\StateTransitionProbabilityMatrix.cs" />
     <Compile Include="Program.cs" />
