@@ -10,5 +10,6 @@ namespace HMM.Matrices
     {
         bool stochasticMatrix();
         void setDataToMatrix(string fileName);
+        void createMatrix();
     }
 }

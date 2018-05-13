@@ -27,6 +27,11 @@ namespace HMM.Matrices
             }
         }
 
+        public void createMatrix()
+        {
+            setInitiallMatrix();
+        }
+
         private void setInitiallMatrix()
         {
             var fileName = @"A:/REPOS/HMM/HMM/DataFiles/InitialStateData.txt";
@@ -65,5 +70,7 @@ namespace HMM.Matrices
                 }
             }
         }
+
+        
     }
 }

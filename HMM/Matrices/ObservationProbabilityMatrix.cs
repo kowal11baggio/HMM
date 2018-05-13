@@ -28,6 +28,11 @@ namespace HMM.Matrices
             }
         }
 
+        public void createMatrix()
+        {
+            setMatrixB();
+        }
+
         private void setMatrixB()
         {
             var fileName = @"A:/REPOS/HMM/HMM/DataFiles/ObservationProbabilityData.txt";
@@ -38,6 +43,8 @@ namespace HMM.Matrices
 
         public double[,] getMatrixB()
         {
+            if (!stochasticMatrix())
+                return null;
             return _matrixB;
         }
 

@@ -15,6 +15,7 @@ namespace HMM.Foundations
 
         private States()
         {
+            _numberOfStates = 0;
             setNumberOfStates();
         }
 

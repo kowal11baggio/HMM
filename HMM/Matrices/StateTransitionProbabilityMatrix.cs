@@ -15,8 +15,7 @@ namespace HMM.Matrices
 
         private StateTransitionProbabilityMatrix()
         {
-            _matrixA = new double[States.Instance.getNumberOfStates(), Observations.Instance.getNumberOfObservations()];
-            setMatrixA();
+            _matrixA = new double[States.Instance.getNumberOfStates(), States.Instance.getNumberOfStates()];
         }
 
         public static StateTransitionProbabilityMatrix Instance
@@ -25,6 +24,11 @@ namespace HMM.Matrices
             {
                 return instance;
             }
+        }
+
+        public void createMatrix()
+        {
+            setMatrixA();
         }
 
         private void setMatrixA()
@@ -37,6 +41,8 @@ namespace HMM.Matrices
 
         public double[,] getMatrixA()
         {
+            if (!stochasticMatrix())
+                return null;
             return _matrixA;
         }
 

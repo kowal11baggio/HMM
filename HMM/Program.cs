@@ -12,6 +12,7 @@ namespace HMM
         static void Main(string[] args)
         {
             var kernel = new Kernel();
+            kernel.initialization();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace HMM.Foundations
 
         private Observations()
         {
+            _numberOfObservations = 0;
             setNumberOfObservations();
         }
 
