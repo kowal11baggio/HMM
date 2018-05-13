@@ -54,6 +54,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DataFiles\InitialStateData.txt" />
+    <Content Include="DataFiles\ObservationProbabilityData.txt" />
+    <Content Include="DataFiles\ObservationSequenceData.txt" />
+    <Content Include="DataFiles\StateTransitionProbabilityData.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
