@@ -10,14 +10,24 @@ namespace HMM.Matrices
 {
     class StateTransitionProbabilityMatrix : IMatrixOperations
     {
+        private static readonly StateTransitionProbabilityMatrix instance = new StateTransitionProbabilityMatrix();
         private double[,] _matrixA;
 
-        public StateTransitionProbabilityMatrix()
+        private StateTransitionProbabilityMatrix()
         {
-            _matrixA = new double[States.Instance.getNumberOfStates(), States.Instance.getNumberOfStates()];
+            _matrixA = new double[States.Instance.getNumberOfStates(), Observations.Instance.getNumberOfObservations()];
+            setMatrixA();
         }
 
-        public void setMatrixA()
+        public static StateTransitionProbabilityMatrix Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        private void setMatrixA()
         {
             var fileName = @"A:/REPOS/HMM/HMM/DataFiles/StateTransitionProbabilityData.txt";
             setDataToMatrix(fileName);

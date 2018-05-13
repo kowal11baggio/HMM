@@ -10,14 +10,24 @@ namespace HMM.Matrices
 {
     class InitialStateDistribution : IMatrixOperations
     {
+        private static readonly InitialStateDistribution instance = new InitialStateDistribution();
         private double[] _initailMatrix;
 
-        public InitialStateDistribution()
+        private InitialStateDistribution()
         {
             _initailMatrix = new double[States.Instance.getNumberOfStates()];
+            setInitiallMatrix();
         }
 
-        public void setInitiallMatrix()
+        public static InitialStateDistribution Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        private void setInitiallMatrix()
         {
             var fileName = @"A:/REPOS/HMM/HMM/DataFiles/InitialStateData.txt";
             setDataToMatrix(fileName);
