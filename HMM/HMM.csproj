@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\Kernel.cs" />
     <Compile Include="Foundations\Observations.cs" />
     <Compile Include="Foundations\States.cs" />
     <Compile Include="Matrices\InitialStateDistribution.cs" />
@@ -61,5 +62,6 @@
     <Content Include="DataFiles\ObservationSequenceData.txt" />
     <Content Include="DataFiles\StateTransitionProbabilityData.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

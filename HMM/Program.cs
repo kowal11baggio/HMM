@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HMM.Matrices;
+using HMM.Algorithm;
 
 namespace HMM
 {
@@ -11,9 +11,7 @@ namespace HMM
     {
         static void Main(string[] args)
         {
-            ObservationProbabilityMatrix.Instance.getMatrixB();
-            //matrixA.getMatrixB();
-            ; // first commit
+            var kernel = new Kernel();
         }
     }
 }
