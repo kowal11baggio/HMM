@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HMM.Matrices;
 using HMM.Foundations;
+using HMM.Sequence;
 
 namespace HMM.Algorithm
 {
@@ -42,6 +43,8 @@ namespace HMM.Algorithm
             _matrixB = ObservationProbabilityMatrix.Instance.getMatrixB();
             InitialStateDistribution.Instance.createMatrix();
             _matrixPi = InitialStateDistribution.Instance.getInitailMatrix();
+            ObservationSequence.Instance.setInitialSeqeunce();
+            ObservationSequence.Instance.getObservationSequence();
         }
 
         private void aflaPass()
