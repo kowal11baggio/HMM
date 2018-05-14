@@ -44,7 +44,7 @@ namespace HMM.Algorithm
             InitialStateDistribution.Instance.createMatrix();
             _matrixPi = InitialStateDistribution.Instance.getInitailMatrix();
             ObservationSequence.Instance.setInitialSeqeunce();
-            ObservationSequence.Instance.getObservationSequence();
+            StateSequence.Instance.setLenghtStatesSequence(ObservationSequence.Instance.getLenghtObservation());
         }
 
         private void aflaPass()
@@ -53,7 +53,7 @@ namespace HMM.Algorithm
             c_zero = 0;
             for(int i =0; i< States.Instance.getNumberOfStates(); i++)
             {
-                
+                //α0(i) = π(i)bi(O0)               // c_zero += 
             }
 
         }
