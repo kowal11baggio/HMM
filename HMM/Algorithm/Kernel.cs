@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HMM.Matrices;
+using HMM.Foundations;
 
 namespace HMM.Algorithm
 {
@@ -17,6 +18,9 @@ namespace HMM.Algorithm
         private int iters;
         private double oldLogProb;
 
+        private int c_zero;
+        private int alfa_zero;
+
         public Kernel()
         {
             _matrixA = null;
@@ -26,6 +30,8 @@ namespace HMM.Algorithm
             maxIters = int.MaxValue;        //maximum number of re-estimation iterations
             iters = 0;
             oldLogProb = double.NegativeInfinity;
+
+            c_zero = 0;
         }
 
         public void initialization()
@@ -40,6 +46,12 @@ namespace HMM.Algorithm
 
         private void aflaPass()
         {
+            // compute alfa_zero(i)
+            c_zero = 0;
+            for(int i =0; i< States.Instance.getNumberOfStates(); i++)
+            {
+                
+            }
 
         }
 
