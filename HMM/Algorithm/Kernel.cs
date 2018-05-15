@@ -11,16 +11,25 @@ namespace HMM.Algorithm
 {
     class Kernel
     {
+        private int _lenghtSequenceT;
+        private int _numberOfStatesN;
+        private int _numberOfObservationsM;
+
         private double[,] _matrixA;
         private double[,] _matrixB;
         private double[] _matrixPi;
+        private double[] _sequenceObservationsO;
 
         private int maxIters;
         private int iters;
         private double oldLogProb;
 
-        private int c_zero;
-        private int alfa_zero;
+        private double[] _sequenceC;
+        private double[,] _matrixAlpha;
+        private double[,] _matrixBeta;
+        private double[,] _matrixGamma;
+
+        Observations.Observation[] _obs;
 
         public Kernel()
         {
@@ -32,7 +41,6 @@ namespace HMM.Algorithm
             iters = 0;
             oldLogProb = double.NegativeInfinity;
 
-            c_zero = 0;
         }
 
         public void initialization()
@@ -44,18 +52,47 @@ namespace HMM.Algorithm
             InitialStateDistribution.Instance.createMatrix();
             _matrixPi = InitialStateDistribution.Instance.getInitailMatrix();
             ObservationSequence.Instance.setInitialSeqeunce();
-            StateSequence.Instance.setLenghtStatesSequence(ObservationSequence.Instance.getLenghtObservation());
+            _numberOfObservationsM = ObservationSequence.Instance.getLenghtObservation();
+            StateSequence.Instance.setLenghtStatesSequence(_numberOfObservationsM);
+            _numberOfStatesN = States.Instance.getNumberOfStates();
+            _lenghtSequenceT = ObservationSequence.Instance.getLenghtObservation();
         }
 
-        private void aflaPass()
+        public void aflaPass()
         {
-            // compute alfa_zero(i)
-            c_zero = 0;
-            for(int i =0; i< States.Instance.getNumberOfStates(); i++)
+            // compute alpha_zero(i)
+            _sequenceC = new double[_numberOfObservationsM];
+            _matrixAlpha = new double[_lenghtSequenceT, _numberOfStatesN];
+            for (int i = 0; i < _numberOfStatesN; i++)
             {
-                //α0(i) = π(i)bi(O0)               // c_zero += 
+                _matrixAlpha[0, i] = _matrixPi[i] * _matrixB[i, (int)ObservationSequence.Instance.getObservationSequence()[0]];
+                _sequenceC[0] += _matrixAlpha[0, i];
             }
-
+            // scale the alpha_zero(i)
+            _sequenceC[0] = 1 / _sequenceC[0];
+            for (int i = 0; i < States.Instance.getNumberOfStates(); i++)
+                _matrixAlpha[0, i] *= _sequenceC[0];
+            // compute alpha_t(i)
+            for (int t = 1; t < _lenghtSequenceT; t++)
+            {
+                _sequenceC[t] = 0;
+                for (int i = 0; i < _numberOfStatesN; i++)
+                {
+                    _matrixAlpha[t, i] = 0;
+                    for (int j = 0; j < _numberOfStatesN; j++)
+                    {
+                        _matrixAlpha[t, i] += _matrixAlpha[t - 1, j] * _matrixA[j, i];
+                    }
+                    _matrixAlpha[t, i] *= _matrixB[i, (int)ObservationSequence.Instance.getObservationSequence()[t]];
+                    _sequenceC[t] += _matrixAlpha[t, i];
+                }
+                // scale alpha_t(i)
+                _sequenceC[t] = 1 / _sequenceC[t];
+                for (int i = 0; i < _numberOfStatesN; i++)
+                {
+                    _matrixAlpha[t, i] *= _sequenceC[t];
+                }
+            }
         }
 
         private void betaPass()

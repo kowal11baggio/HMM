@@ -13,6 +13,7 @@ namespace HMM
         {
             var kernel = new Kernel();
             kernel.initialization();
+            kernel.aflaPass();
         }
     }
 }
