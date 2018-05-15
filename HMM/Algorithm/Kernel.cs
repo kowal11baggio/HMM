@@ -56,23 +56,26 @@ namespace HMM.Algorithm
             StateSequence.Instance.setLenghtStatesSequence(_numberOfObservationsM);
             _numberOfStatesN = States.Instance.getNumberOfStates();
             _lenghtSequenceT = ObservationSequence.Instance.getLenghtObservation();
+            _sequenceC = new double[_numberOfObservationsM];
+            _matrixAlpha = new double[_lenghtSequenceT, _numberOfStatesN];
+            _matrixBeta = new double[_lenghtSequenceT, _numberOfStatesN];
         }
 
         public void aflaPass()
         {
-            // compute alpha_zero(i)
-            _sequenceC = new double[_numberOfObservationsM];
-            _matrixAlpha = new double[_lenghtSequenceT, _numberOfStatesN];
+            // compute alpha0(i)
             for (int i = 0; i < _numberOfStatesN; i++)
             {
                 _matrixAlpha[0, i] = _matrixPi[i] * _matrixB[i, (int)ObservationSequence.Instance.getObservationSequence()[0]];
                 _sequenceC[0] += _matrixAlpha[0, i];
             }
-            // scale the alpha_zero(i)
+
+            // scale the alpha0(i)
             _sequenceC[0] = 1 / _sequenceC[0];
             for (int i = 0; i < States.Instance.getNumberOfStates(); i++)
                 _matrixAlpha[0, i] *= _sequenceC[0];
-            // compute alpha_t(i)
+
+            // compute alphaT(i)
             for (int t = 1; t < _lenghtSequenceT; t++)
             {
                 _sequenceC[t] = 0;
@@ -86,20 +89,46 @@ namespace HMM.Algorithm
                     _matrixAlpha[t, i] *= _matrixB[i, (int)ObservationSequence.Instance.getObservationSequence()[t]];
                     _sequenceC[t] += _matrixAlpha[t, i];
                 }
-                // scale alpha_t(i)
+
+                // scale alphaT(i)
                 _sequenceC[t] = 1 / _sequenceC[t];
                 for (int i = 0; i < _numberOfStatesN; i++)
-                {
                     _matrixAlpha[t, i] *= _sequenceC[t];
+            }
+        }
+
+        public void betaPass()
+        {
+            // betaT-1(i) = 1 scaled by cT-1
+            for (int i = 0; i < _numberOfStatesN; i++)
+                _matrixBeta[_lenghtSequenceT - 1, i] = _sequenceC[_lenghtSequenceT - 1];
+            // beta-pass
+            for (int t = _lenghtSequenceT - 2; t > -1; t--)
+            {
+                for (int i = 0; i < _numberOfStatesN; i++)
+                {
+                    _matrixBeta[t, i] = 0;
+                    for (int j = 0; j < _numberOfStatesN; j++)
+                    {
+                        _matrixBeta[t, i] += _matrixA[i, j] * _matrixB[j, (int)ObservationSequence.Instance.getObservationSequence()[t + 1]] * _matrixBeta[t + 1, j];
+                    }
+                    // scale betaT(i) with same scale factor as alpha(i)
+                    _matrixBeta[t, i] *= _sequenceC[t];
                 }
             }
         }
 
-        private void betaPass()
+        public void computeGamma()
         {
 
         }
+        public void re_estimate()
+        {
 
+        }
+        public void computer_log()
+        {
 
+        }
     }
 }
