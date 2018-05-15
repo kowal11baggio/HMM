@@ -39,7 +39,6 @@ namespace HMM.Algorithm
             maxIters = int.MaxValue;        //maximum number of re-estimation iterations
             iters = 0;
             oldLogProb = double.NegativeInfinity;
-
         }
 
         public void initialization()
