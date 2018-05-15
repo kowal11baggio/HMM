@@ -20,8 +20,8 @@ namespace HMM.Algorithm
         private double[] _matrixPi;
 
         private double[,] _delta;
-        private double[,] _paths;
-        private double[,] _prec;
+        private string[] _paths;
+        private string[] _prec;
 
         StateSequence _stateSequence;
 
@@ -42,8 +42,8 @@ namespace HMM.Algorithm
             _stateSequence.setLenghtStatesSequence(_numberOfObservationsM);
             _numberOfStatesN = States.Instance.getNumberOfStates();
             _lenghtSequenceT = ObservationSequence.Instance.getLenghtObservation();
-            _paths = new double[_numberOfStatesN, _lenghtSequenceT];
-            _prec = new double[_numberOfStatesN, _lenghtSequenceT];
+            _paths = new string[_numberOfStatesN];
+            _prec = new string[_numberOfStatesN];
             _delta = new double[_lenghtSequenceT, _numberOfStatesN];
         }
         public void algorithm()
@@ -53,8 +53,8 @@ namespace HMM.Algorithm
                 if (_matrixPi[i] == 0.0)
                     _matrixPi[i] = double.Epsilon;
                 _delta[0, i] = Math.Log(_matrixPi[i] * _matrixB[i, (int)ObservationSequence.Instance.getObservationSequence()[0]]);
-                _paths[i,0] = i;
-                _prec[i,0] = -1;
+                _paths[i] = i.ToString();
+                _prec[i] = "";
             }
             for (int t = 1; t < _lenghtSequenceT; t++)
             {
@@ -68,16 +68,13 @@ namespace HMM.Algorithm
                         {
                             _maximum = result;
                             _delta[t, i] = result;
-                            _prec[i,0] = _paths[j,0];
+                            _prec[i] = _paths[j];
                         }
                     }
                 }
                 for (int i = 0; i < _numberOfStatesN; i++)
-                {
-                    _paths[i,0] = _prec[i,0] + i;
-                }
+                    _paths[i] = _prec[i] + i.ToString();
             }
-            int a = 0;
             double best_path = double.NegativeInfinity;
             int last_state = 0;
             for (int i = 0; i < _numberOfStatesN; i++)
@@ -89,7 +86,15 @@ namespace HMM.Algorithm
                     last_state = i;
                 }
             }
-            Console.Write(_paths[last_state,0]);
+            statesSequence(_paths[last_state]);
+        }
+        private void statesSequence(string statesSequence)
+        {
+            for (int t = 0; t < _lenghtSequenceT; t++)
+            {
+                _stateSequence.setValueToStatesSequence(statesSequence[t] - '0');
+            }
+            _stateSequence.printStateSequence("(DP sense)");
         }
     }
 }

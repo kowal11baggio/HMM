@@ -11,7 +11,7 @@ namespace HMM.Foundations
         private static readonly States instance = new States();
 
         private int _numberOfStates;
-        public enum State { Hot, Cold };
+        public enum State { Bad, Averange, Good };
 
         private States()
         {

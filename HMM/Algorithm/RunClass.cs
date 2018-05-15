@@ -35,12 +35,14 @@ namespace HMM.Algorithm
             _kernelHMMSence.initialization();
             _kernelHMMSence.aflaPass();
             _kernelHMMSence.betaPass();
-            _kernelHMMSence.sequenceState();
+            _kernelHMMSence.statesSequence();
+            Console.WriteLine(" ");
         }
         public void DPSenceAlgorithm()
         {
             _kerncelDPSence.initialization();
             _kerncelDPSence.algorithm();
+            Console.WriteLine(" ");
         }
     }
 }

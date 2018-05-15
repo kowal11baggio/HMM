@@ -112,23 +112,8 @@ namespace HMM.Algorithm
                 }
             }
         }
-
-        public void computeGamma()
-        {
-
-        }
-
-        public void re_estimate()
-        {
-
-        }
-
-        public void computer_log()
-        {
-
-        }
  
-        public void sequenceState()
+        public void statesSequence()
         {
             for (int t = 0; t < _lenghtSequenceT; t++)
             {
