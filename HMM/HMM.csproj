@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\KerncelDPSence.cs" />
     <Compile Include="Algorithm\KernelHMMSence.cs" />
     <Compile Include="Foundations\Observations.cs" />
     <Compile Include="Foundations\States.cs" />
