@@ -42,17 +42,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\KerncelDPSence.cs" />
+    <Compile Include="Algorithm\KernelHMMSence.cs" />
     <Compile Include="Foundations\Observations.cs" />
     <Compile Include="Foundations\States.cs" />
     <Compile Include="Matrices\InitialStateDistribution.cs" />
+    <Compile Include="Matrices\IMatrixOperations.cs" />
     <Compile Include="Matrices\ObservationProbabilityMatrix.cs" />
     <Compile Include="Matrices\StateTransitionProbabilityMatrix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Algorithm\RunClass.cs" />
     <Compile Include="Sequence\ObservationSequence.cs" />
+    <Compile Include="Sequence\StateSequence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataFiles\InitialStateData.txt" />
+    <Content Include="DataFiles\ObservationProbabilityData.txt" />
+    <Content Include="DataFiles\ObservationSequenceData.txt" />
+    <Content Include="DataFiles\StateTransitionProbabilityData.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

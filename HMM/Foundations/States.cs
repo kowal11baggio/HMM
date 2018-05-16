@@ -8,15 +8,31 @@ namespace HMM.Foundations
 {
     public class States
     {
-        private int _numberOfStates;
-        private enum State { Hot, Cold };
+        private static readonly States instance = new States();
 
-        public void setNumberOfStates(int numberOfStates)
+        private int _numberOfStates;
+        public enum State { Happiness, Anger, Fear, Tiredness};
+
+        private States()
         {
-            _numberOfStates = numberOfStates;
+            _numberOfStates = 0;
+            setNumberOfStates();
         }
 
-        public int setNumberOfStates()
+        public static States Instance
+        {
+            get
+            {
+                return instance;
+            }   
+        }
+
+        private void setNumberOfStates()
+        {
+            _numberOfStates = Enum.GetNames(typeof(State)).Length;
+        }
+
+        public int getNumberOfStates()
         {
             return _numberOfStates;
         }

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HMM.Algorithm;
 
 namespace HMM
 {
-    class ProgramRunClass
+    class MainClass
     {
         static void Main(string[] args)
         {
-            ; /// first commits
+            var _runProgram = new RunClass();
         }
     }
 }
