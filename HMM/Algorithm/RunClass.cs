@@ -8,7 +8,6 @@ using HMM.Sequence;
 
 namespace HMM.Algorithm
 {
-    ;
     public class RunClass
     {
         KernelHMMSence _kernelHMMSence;
