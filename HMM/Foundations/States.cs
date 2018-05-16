@@ -11,7 +11,7 @@ namespace HMM.Foundations
         private static readonly States instance = new States();
 
         private int _numberOfStates;
-        public enum State { Bad, Averange, Good };
+        public enum State { Happiness, Anger, Fear, Tiredness};
 
         private States()
         {

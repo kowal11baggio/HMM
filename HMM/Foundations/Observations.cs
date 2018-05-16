@@ -11,7 +11,7 @@ namespace HMM.Foundations
         private static readonly Observations instance = new Observations();
 
         private int _numberOfObservations;
-        public enum Observation { Little, Below, Averange, Very };
+        public enum Observation { Washing, Biting, Standing, Yawning  };
 
         private Observations()
         {
